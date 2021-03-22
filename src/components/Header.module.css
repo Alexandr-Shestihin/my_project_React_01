@@ -1,0 +1,13 @@
+.header {
+   -ms-grid-row: 1;
+   -ms-grid-column: 1;
+   -ms-grid-column-span: 2;
+   grid-area: h;
+   background: lime;
+}
+
+.header img {
+   height: 56px;
+   padding-top: 2px;
+   border-radius: 50%;
+}

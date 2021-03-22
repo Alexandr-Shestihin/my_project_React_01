@@ -1,0 +1,9 @@
+.content {
+   -ms-grid-row: 2;
+   -ms-grid-column: 2;
+   grid-area: c;
+   background: #4d7bc5;
+}
+.item {
+   color: rgb(20, 209, 77);
+}
