@@ -1,0 +1,32 @@
+.app-wrapper {
+   display: grid;
+   width: 1200px;
+   margin: 0 auto;
+
+   grid-template-areas:
+      "h h"
+      "n c";
+   grid-template-rows: 60px 1fr;
+   grid-template-columns: 2fr 10fr;
+   /* grid-gap: 10px; */
+}
+
+.header {
+   grid-area: h;
+   background: lime;
+}
+.header img {
+   height: 56px;
+   padding-top: 2px;
+   border-radius: 50%;
+}
+
+.nav {
+   grid-area: n;
+   background: #dcb881;
+}
+
+.content {
+   grid-area: c;
+   background: #4d7bc5;
+}
