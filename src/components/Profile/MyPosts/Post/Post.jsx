@@ -1,11 +1,13 @@
 import React from 'react';
 import s from "./Post.module.scss";
 
-const Post = () => {
+const Post = (obj) => {
    return (
       <div className={s.item}>
-         <img src="http://risovach.ru/upload/2019/04/generator/chernyy-vlastelin_205750111_orig_.jpg" />
-               post 1
+         <img src={obj.ava} />
+         <span className={s.massage}>{obj.massage}</span>
+         <div className={s.name}>{obj.name}</div>
+         <button className={s.likes}>Likes: {obj.likes}</button>
       </div>
    )
 }
