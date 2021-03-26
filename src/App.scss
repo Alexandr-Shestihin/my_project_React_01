@@ -12,3 +12,9 @@
    grid-template-columns: 2fr 10fr;
    /* grid-gap: 10px; */
 }
+.app-wrapper-content {
+   -ms-grid-row: 2;
+   -ms-grid-column: 2;
+   grid-area: c;
+   background: #4d7bc5;
+}
