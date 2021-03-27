@@ -1,18 +1,25 @@
 import React from 'react';
 import s from "./For_zorax_css.module.scss";
+import Js from './JS/Js';
 
-let menu = [
-   ["Main Menu", "Products", "Store", "Forum"],
-]
+const user = {
+   name: "John",
+}
+user.name = "Pete";
 
 const For_zorax_css = () => {
    return (
-      <div>
-         {/* <div className={s.block}>
-            <img src="https://s0.rbk.ru/v6_top_pics/media/img/3/06/755813427125063.jpg" alt="" />
-         </div>
-         <div className={s.block1}></div> */}
-         <div className={s.button}></div>
+      <div className={s.main}>
+         <Js name={user.name} />
+         {/* <h1>Заголовок h1</h1>
+         <h2 className="list">Заголовок h2</h2>
+         <ul className="list">
+            <h4>Заголовок h4</h4>
+            <li>list 1</li>
+            <li>list 2</li>
+            <li></li>
+            <h4>Заголовок h4</h4>
+         </ul> */}
       </div>
    )
 }

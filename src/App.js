@@ -24,6 +24,7 @@ const App = () => {
                <Route path="/news" component={News} />
                <Route path="/music" component={Music} />
                <Route path="/settings" component={Settings} />
+               <Route path="/for_zorax_css" component={For_zorax_css} />
             </div>
          </div >
       </BrowserRouter>
