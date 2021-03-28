@@ -1,24 +1,32 @@
-.triangl {
-   width: 120px;
-   height: 100px;
-   margin: 50px;
+.container {
+   background: repeating-linear-gradient(
+         45deg,
+         rgba(255, 255, 0, 0.658),
+         rgba(255, 255, 0, 0.658) 10px,
+         transparent 10px,
+         transparent 20px
+      ),
+      repeating-linear-gradient(
+         -45deg,
+         rgba(255, 255, 0, 0.658),
+         rgba(255, 255, 0, 0.658) 10px,
+         transparent 10px,
+         transparent 20px
+      );
+   width: 250px;
+   height: 150px;
+   margin: 80px;
+   line-height: 150;
+   text-align: center;
+   font-size: 1.2em;
+   color: #fff;
    border: 1px solid rgb(0, 0, 0);
-   transition: box-shadow 0.5s ease-in-out 0.01s;
-   &:hover {
-      box-shadow: 1px 1px 10px black, inset 1px 1px 10px wheat;
-      background: repeating-linear-gradient(
-            45deg,
-            rgba(255, 255, 0, 0.562),
-            rgba(255, 255, 0, 0.384) 10px,
-            transparent 10px,
-            transparent 20px
-         ),
-         repeating-linear-gradient(
-            -45deg,
-            rgba(255, 255, 0, 0.562),
-            rgba(255, 255, 0, 0.384) 10px,
-            transparent 10px,
-            transparent 20px
-         );
-   }
+   border-radius: 8px;
+   transition: transform 0.9s ease-in-out 0.001s;
+   transform: rotateZ(90deg);
+}
+.main_container {
+   perspective: 500px;
+   width: 200px;
+   height: 200px;
 }
