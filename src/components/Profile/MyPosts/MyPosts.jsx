@@ -12,16 +12,18 @@ let users = [
    { name: 'Рогозин', massage: "I have a trampoline! It's comfortable on it!", likes: "10", ava: "https://cdn.thealphacentauri.net/wp-content/uploads/usercontent/posts/25415_cover.jpg?x15573" },
 ]
 
-
 const MyPosts = () => {
    return (
-      <div>
-         <textarea name="" id="" cols="30" rows="10"></textarea>
-         <button>Add post</button>
+      <div className={s.postsBlock}>
+         <h3>My posts</h3>
          <div>
-            <div>В сети: {users.length} пользователей</div>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
          </div>
+         <button>Add post</button>
          <div className={s.posts}>
+            <div>
+               <div>В сети: {users.length} пользователей</div>
+            </div>
             <Posts name={users[0].name} massage={users[0].massage} likes={users[0].likes} ava={users[0].ava} />
 
             <Posts name={users[1].name} massage={users[1].massage} likes={users[1].likes} ava={users[1].ava} />

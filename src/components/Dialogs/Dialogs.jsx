@@ -2,32 +2,36 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from "./Dialogs.module.scss";
 
+const Dialog = (obj) => {
+   let path = "/Dialogs/" + obj.id
+   return (
+      <div >
+         <NavLink to={path} className={s.dialog} activeClassName={s.active}>{obj.name}</NavLink>
+      </div>
+   )
+}
+const Massages = (props) => {
+   return (
+      <div className="message">{props.messages}</div>
+   )
+}
+
 const Dialogs = () => {
    return (
       <div className={s.dialogs}>
          <div>
             <div className={s.dialogs_items}>
-               <div >
-                  <NavLink to="/Dialogs/0" className={s.dialog} activeClassName={s.active}>Чёрный властелин</NavLink>
-               </div>
-               <div >
-                  <NavLink to="/Dialogs/3" className={s.dialog} activeClassName={s.active}>Ян</NavLink>
-               </div>
-               <div>
-                  <NavLink to="/Dialogs/4" className={s.dialog} activeClassName={s.active}>Александр</NavLink>
-               </div>
-               <div>
-                  <NavLink to="/Dialogs/7" className={s.dialog} activeClassName={s.active}>Белый властелин</NavLink>
-               </div>
-               <div>
-                  <NavLink to="/Dialogs/8" className={s.dialog} activeClassName={s.active}>Иван</NavLink>
-               </div>
+               <Dialog name="Чёрный властелин" id="0" />
+               <Dialog name="Ян" id="3" />
+               <Dialog name="Александр" id="4" />
+               <Dialog name="Белый властелин" id="7" />
+               <Dialog name="Иван" id="8" />
             </div>
          </div>
          <div className={s.messages}>
-            <div className="message">Слава Польше!</div>
-            <div className="message">Слава Больцеровичу!</div>
-            <div className="message">Слава Польскому Народу!</div>
+            <Massages messages="Слава Польше!" />
+            <Massages messages="Слава Больцеровичу!" />
+            <Massages messages="Слава Польскому Народу!" />
          </div>
       </div>
    )
