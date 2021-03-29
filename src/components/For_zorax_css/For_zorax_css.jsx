@@ -2,6 +2,13 @@ import React from 'react';
 import Learn from "./Learn/Learn";
 import s from "./For_zorax_css.module.scss";
 
+let user = {
+   name: "Иван",
+   age: 39,
+}
+let clone = {};
+Object.assign(clone, user);
+
 const For_zorax_css = () => {
    return (
       <div className={s.main}>
@@ -10,7 +17,7 @@ const For_zorax_css = () => {
                Text
          </div>
          </div>
-         {/* <Learn value={1234} /> */}
+         <Learn value1={clone.name} value2={clone.age} />
       </div>
    )
 }
