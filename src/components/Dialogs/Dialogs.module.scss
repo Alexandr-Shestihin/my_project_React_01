@@ -1,13 +1,14 @@
+* {
+   color: white;
+}
 .dialogs {
    display: grid;
-   grid-template-columns: 2fr 10fr;
+   grid-template-columns: 3fr 10fr;
    padding: 10px;
 
    .dialogs_items {
       .dialog {
-         &.active {
-            color: goldenrod;
-         }
+         text-decoration: none;
       }
    }
    .messages {
@@ -15,4 +16,8 @@
       .message {
       }
    }
+}
+.active {
+   font-size: 1.1em;
+   font-weight: 900;
 }

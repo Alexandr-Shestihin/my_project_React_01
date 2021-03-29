@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import s from "./Dialogs.module.scss";
 
 const Dialogs = () => {
@@ -6,27 +7,27 @@ const Dialogs = () => {
       <div className={s.dialogs}>
          <div>
             <div className={s.dialogs_items}>
-               <div className={s.dialog + " " + s.active}>
-                  Чёрный властелин
+               <div >
+                  <NavLink to="/Dialogs/0" className={s.dialog} activeClassName={s.active}>Чёрный властелин</NavLink>
                </div>
-               <div className={s.dialog}>
-                  Ян
+               <div >
+                  <NavLink to="/Dialogs/3" className={s.dialog} activeClassName={s.active}>Ян</NavLink>
                </div>
-               <div className={s.dialog}>
-                  Александр
+               <div>
+                  <NavLink to="/Dialogs/4" className={s.dialog} activeClassName={s.active}>Александр</NavLink>
                </div>
-               <div className={s.dialog}>
-                  Даун
+               <div>
+                  <NavLink to="/Dialogs/7" className={s.dialog} activeClassName={s.active}>Белый властелин</NavLink>
                </div>
-               <div className={s.dialog}>
-                  Шкальник
+               <div>
+                  <NavLink to="/Dialogs/8" className={s.dialog} activeClassName={s.active}>Иван</NavLink>
                </div>
             </div>
          </div>
          <div className={s.messages}>
-            <div className="message">Hi Gitler!</div>
-            <div className="message">Sieg Hill!</div>
-            <div className="message">SS!</div>
+            <div className="message">Слава Польше!</div>
+            <div className="message">Слава Больцеровичу!</div>
+            <div className="message">Слава Польскому Народу!</div>
          </div>
       </div>
    )
