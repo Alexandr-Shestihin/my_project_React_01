@@ -1,31 +1,94 @@
-.container {
-   background: repeating-linear-gradient(
-         45deg,
-         rgba(255, 255, 0, 0.658),
-         rgba(255, 255, 0, 0.658) 10px,
-         transparent 10px,
-         transparent 20px
-      ),
-      repeating-linear-gradient(
-         -45deg,
-         rgba(255, 255, 0, 0.658),
-         rgba(255, 255, 0, 0.658) 10px,
-         transparent 10px,
-         transparent 20px
-      );
-   width: 250px;
-   height: 150px;
+.wrapper {
    margin: 80px;
-   line-height: 150;
-   text-align: center;
-   font-size: 1.2em;
-   color: #fff;
-   border: 1px solid rgb(0, 0, 0);
-   border-radius: 8px;
-   transition: transform 0.9s ease-in-out 0.001s;
+   perspective: 900px;
+   .cube {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      transform: rotateY(150deg);
+      transform-style: preserve-3d;
+      transform: scale(0.8);
+      .site {
+         height: 100%;
+         width: 100%;
+         background: rgba(177, 12, 192, 0.37);
+         position: absolute;
+         transform-origin: 50% 50% -150px;
+         border: 1px solid rgb(255, 254, 254);
+      }
+   }
 }
-.main_container {
-   perspective: 500px;
-   width: 200px;
-   height: 200px;
+.site1 {
+   transform: rotateX(90deg);
 }
+.site2 {
+   transform: rotateX(-90deg);
+}
+.site3 {
+   transform: rotateY(-90deg);
+}
+.site4 {
+   transform: rotateY(90deg);
+}
+.site5 {
+   transform: rotateY(180deg);
+}
+/*
+3D куб
+
+.wrapper {
+   width: 300px;
+   height: 300px;
+   perspective: 900px;
+   margin: 200px auto;
+   .cube {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      transform-style: preserve-3d;
+      .site {
+         width: 100%;
+         height: 100%;
+         position: absolute;
+         background: repeating-linear-gradient(
+               45deg,
+               rgba(170, 12, 149, 0.2),
+               rgba(170, 12, 149, 0.2) 10px,
+               transparent 10px,
+               transparent 20px
+            ),
+            repeating-linear-gradient(
+               -45deg,
+               rgba(170, 12, 149, 0.2),
+               rgba(170, 12, 149, 0.2) 10px,
+               transparent 10px,
+               transparent 20px
+            );
+         border: 10px solid white;
+         border-radius: 10px;
+         transform-style: preserve-3d;
+         transform-origin: 50% 50% 150px;
+         box-shadow: inset 1px 1px 100px rgba(170, 12, 149, 0.4);
+         font-size: 100px;
+         text-align: center;
+         line-height: 300px;
+         font-weight: 900;
+      }
+   }
+}
+.site1 {
+   transform: rotateX(90deg);
+}
+.site2 {
+   transform: rotateX(-90deg);
+}
+.site3 {
+   transform: rotateY(90deg);
+}
+.site4 {
+   transform: rotateY(-90deg);
+}
+.site5 {
+   transform: rotateX(180deg);
+}
+*/
