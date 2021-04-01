@@ -1,12 +1,19 @@
 import React from 'react';
 import Learn from "./Learn/Learn";
 import s from "./For_zorax_css.module.scss";
-let obj = {};
-function A() { return obj }
-function B() { return obj }
 
-let a = new A;
-let b = new B;
+function Accumulator(startingValue) {
+   this.value = startingValue;
+   this.read = function () {
+      return this.value += +prompt("", "");
+   }
+}
+let accumulator = new Accumulator(1); // начальное значение 1
+
+accumulator.read(); // прибавит ввод prompt к текущему значению
+accumulator.read(); // прибавит ввод prompt к текущему значению
+
+alert(accumulator.value)
 
 const For_zorax_css = () => {
    return (
@@ -23,8 +30,7 @@ const For_zorax_css = () => {
             </div>
          </div>
 
-         <Learn value1={(a == b).toString()} value2={12} />
-      </div>
-   )
+         <Learn value1={20} value2={12} />
+      </div>)
 }
 export default For_zorax_css;

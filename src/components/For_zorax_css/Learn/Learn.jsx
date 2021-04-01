@@ -4,8 +4,8 @@ import s from "./Learn.module.scss";
 const Learn = (obj) => {
    return (
       <div className={s.value}>
-         <div>Сумма: {obj.value1}</div>
-         <div>Произведение: {obj.value2}</div>
+         <div>Имя: {obj.value1}</div>
+         <div>Возраст: {obj.value2}</div>
       </div>
    )
 }
