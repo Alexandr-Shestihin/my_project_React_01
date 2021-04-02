@@ -13,7 +13,7 @@ const MyPosts = () => {
       { name: 'Россеянская болельщица', massage: "I can to do it cheap!", likes: "250", ava: "https://kaifolog.ru/uploads/posts/2018-06/1530153755_00_5.jpg" },
       { name: 'Рогозин', massage: "I have a trampoline! It's comfortable on it!", likes: "10", ava: "https://cdn.thealphacentauri.net/wp-content/uploads/usercontent/posts/25415_cover.jpg?x15573" },
    ]
-   let postsElements = posts.map(post => (<Posts name={post.name} massage={post.massage} likes={post.likes} ava={post.ava} />))
+   let postsElements = posts.map(p => (<Posts name={p.name} massage={p.massage} likes={p.likes} ava={p.ava} />))
    return (
       <div className={s.postsBlock}>
          <h3>My posts</h3>
