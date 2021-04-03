@@ -19,12 +19,12 @@ const App = () => {
             <Header />
             <Nav />
             <div className="app-wrapper-content">
-               <Route path="/Dialogs" component={Dialogs} />
-               <Route path="/profile" component={Profile} />
-               <Route path="/news" component={News} />
-               <Route path="/music" component={Music} />
-               <Route path="/settings" component={Settings} />
-               <Route path="/for_zorax_css" component={For_zorax_css} />
+               <Route path="/Dialogs" render={() => <Dialogs />} />
+               <Route path="/profile" render={() => <Profile />} />
+               <Route path="/news" render={() => <News />} />
+               <Route path="/music" render={() => <Music />} />
+               <Route path="/settings" render={() => <Settings />} />
+               <Route path="/for_zorax_css" render={() => <For_zorax_css />} />
             </div>
          </div >
       </BrowserRouter>
