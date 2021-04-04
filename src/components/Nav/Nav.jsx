@@ -2,7 +2,8 @@ import React from 'react';
 import s from "./Nav.module.scss";
 import { NavLink } from "react-router-dom";
 
-const Nav = () => {
+const Nav = (props) => {
+   let siteBarElements = props.siteBar.map(e => <div className={s.item__Block}>{e.name}</div>);
    return (
       <nav className={s.nav}>
          <div className={s.item}>
@@ -23,6 +24,12 @@ const Nav = () => {
          </div>
          <div className={s.item}>
             <NavLink to="/For_zorax_css" activeClassName={s.active}>For_zorax_css</NavLink>
+         </div>
+         <div className={`${s.item} ${s.item__friends}`}>
+            <h2>Frients</h2>
+            <div className={s.item__mainBlock}>
+               {siteBarElements}
+            </div>
          </div>
       </nav>
    )
