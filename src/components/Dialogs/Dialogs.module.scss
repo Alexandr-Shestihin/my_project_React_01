@@ -13,6 +13,9 @@
    }
    .messages {
       padding-left: 10px;
+      & textarea {
+         color: black;
+      }
       .message {
       }
    }

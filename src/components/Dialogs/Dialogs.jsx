@@ -4,10 +4,16 @@ import Massages from './Massages/Massages';
 import s from "./Dialogs.module.scss";
 
 const Dialogs = (props) => {
-
-
    let dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
+
    let messagesElements = props.state.massages.map(m => <Massages messages={m.massage} />);
+
+   let newMassage = React.createRef();
+
+   let addMassage = () => {
+      alert(newMassage.current.value);
+      newMassage.current.value = '1';
+   }
    return (
       <div className={s.dialogs}>
          <div>
@@ -17,6 +23,8 @@ const Dialogs = (props) => {
          </div>
          <div className={s.messages}>
             {messagesElements}
+            <textarea ref={newMassage}></textarea>
+            <button onClick={addMassage}>Отправить</button>
          </div>
       </div>
    )

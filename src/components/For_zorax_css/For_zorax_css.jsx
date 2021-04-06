@@ -2,7 +2,10 @@ import React from 'react';
 import Learn from "./Learn/Learn";
 import s from "./For_zorax_css.module.scss";
 
+let i = "12345";
+
 const For_zorax_css = () => {
+
    return (
       <div className={s.main}>
          {/* <div className={s.squere}></div> */}
@@ -17,7 +20,7 @@ const For_zorax_css = () => {
             </div>
          </div>
 
-         <Learn value1={21} value2={21} />
+         <Learn />
       </div>)
 }
 export default For_zorax_css;
