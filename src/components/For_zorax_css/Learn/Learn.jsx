@@ -1,47 +1,83 @@
 import React from 'react';
 import s from "./Learn.module.scss";
 
-const Learn = (obj) => {
+const Learn = (props) => {
+   ///////////Калькулятор//////////////
    let sum;
    let minus;
 
-   let result = React.createRef();
+   let resultCalc = React.createRef();
 
-   let addOne = () => { result.current.value += 1 };
-   let addTwo = () => { result.current.value += 2 };
-   let addThree = () => { result.current.value += 3 };
-   let addFour = () => { result.current.value += 4 };
-   let addFive = () => { result.current.value += 5 };
-   let addSix = () => { result.current.value += 6 };
-   let addSeven = () => { result.current.value += 7 };
-   let addEight = () => { result.current.value += 8 };
-   let addNine = () => { result.current.value += 9 };
-   let addZero = () => { result.current.value += 0 };
+   let addOne = () => { resultCalc.current.value += 1 };
+   let addTwo = () => { resultCalc.current.value += 2 };
+   let addThree = () => { resultCalc.current.value += 3 };
+   let addFour = () => { resultCalc.current.value += 4 };
+   let addFive = () => { resultCalc.current.value += 5 };
+   let addSix = () => { resultCalc.current.value += 6 };
+   let addSeven = () => { resultCalc.current.value += 7 };
+   let addEight = () => { resultCalc.current.value += 8 };
+   let addNine = () => { resultCalc.current.value += 9 };
+   let addZero = () => { resultCalc.current.value += 0 };
 
    let summarize = () => {
-      sum = +result.current.value;
-      result.current.value = '';
+      sum = +resultCalc.current.value;
+      resultCalc.current.value = '';
    };
    let subtract = () => {
-      minus = +result.current.value;
-      result.current.value = "";
+      minus = +resultCalc.current.value;
+      resultCalc.current.value = "";
    }
    let showResult = () => {
-      let totalКesult = +result.current.value;
+      let totalКesult = +resultCalc.current.value;
       if (sum) {
-         result.current.value = totalКesult + sum;
+         resultCalc.current.value = totalКesult + sum;
          sum = 0;
-      } else result.current.value = minus - totalКesult;
+      } else resultCalc.current.value = minus - totalКesult;
       minus = 0;
    }
    let clean = () => {
-      result.current.value = "";
+      resultCalc.current.value = "";
       sum = 0;
       minus = 0;
    };
+   ///////////Шифратор//////////////
+   let totalResultDecoder;
+   function encoder(str, pass) {
+      let i = pass;
+      if ((String(i).length < 8) && i) {
+         let result = '';
+         for (let key of str) {
+            let resultIss = key.codePointAt() + pass - (pass / 2) + (pass ** (1 / 2));
+            result += String.fromCodePoint(resultIss.toFixed(0))
+         }
+         return result;
+      } else
+         return 'Пароль не соответствует требованиям!';
+   }
+
+   let text = React.createRef();
+   let resultCod = React.createRef();
+   let showResultCod = () => {
+      totalResultDecoder = encoder(text.current.value, +resultCod.current.value);
+   }
+   // let massage = prompt('Введите сообщения для кодировки', '');
+   // let numb = +prompt('Введите пароль из ЦЕЛОГО числа (ДО 6-Х СИМВОЛОВ)', '');
+
+
    return (
       <div className={s.value}>
-         <input ref={result} type="text" /><br />
+         <div>Введите сообщения для кодировки: </div>
+         <textarea ref={text}>Много текста разного блядь!</textarea><br />
+
+         <div>Введите пароль из ЦЕЛОГО числа (ДО 7-Х СИМВОЛОВ): </div>
+         <input ref={resultCod} type="password" placeholder="Пароль" /><br />
+
+         <p>{totalResultDecoder}</p>
+
+         <button onClick={showResultCod} className={s.mainButton}>Зашифровать!</button>
+
+         <br /><br /><br /><br />
+         <input ref={resultCalc} type="text" /><br />
          <button onClick={addOne}>1</button>
          <button onClick={addTwo}>2</button>
          <button onClick={addThree}>3</button>

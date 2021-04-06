@@ -5,7 +5,7 @@ import s from "./For_zorax_css.module.scss";
 let i = "12345";
 
 const For_zorax_css = () => {
-
+   let value = i.length;
    return (
       <div className={s.main}>
          {/* <div className={s.squere}></div> */}

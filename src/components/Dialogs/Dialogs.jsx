@@ -12,7 +12,7 @@ const Dialogs = (props) => {
 
    let addMassage = () => {
       alert(newMassage.current.value);
-      newMassage.current.value = '1';
+      newMassage.current.value = '';
    }
    return (
       <div className={s.dialogs}>
