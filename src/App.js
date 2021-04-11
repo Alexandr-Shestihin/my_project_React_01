@@ -15,12 +15,11 @@ const App = (props) => {
    return (
       <BrowserRouter>
          <div className="app-wrapper">
-            {/* <For_zorax_css /> */}
             <Header />
-            <Nav siteBar={props.state.siteBar} />
+            <Nav siteBar={props.state1.siteBar} />
             <div className="app-wrapper-content">
-               <Route path="/Dialogs" render={() => <Dialogs state={props.state.dialogsPage} />} />
-               <Route path="/profile" render={() => <Profile state={props.state.profilePage} addPost={props.addPost} />} />
+               <Route path="/Dialogs" render={() => <Dialogs state={props.state1.dialogsPage} />} />
+               <Route path="/profile" render={() => <Profile state={props.state1.profilePage} addPost={props.addPost} />} />
                <Route path="/news" render={() => <News />} />
                <Route path="/music" render={() => <Music />} />
                <Route path="/settings" render={() => <Settings />} />
