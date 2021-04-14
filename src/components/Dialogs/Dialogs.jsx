@@ -4,9 +4,9 @@ import Massages from './Massages/Massages';
 import s from "./Dialogs.module.scss";
 
 const Dialogs = (props) => {
-   let dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
+   let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
 
-   let messagesElements = props.state.massages.map(m => <Massages messages={m.massage} />);
+   let messagesElements = props.dialogsPage.massages.map(m => <Massages messages={m.massage} />);
 
    let newMassage = React.createRef();
 
