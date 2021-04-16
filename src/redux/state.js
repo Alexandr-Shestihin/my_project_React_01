@@ -1,4 +1,6 @@
-import { rerenderEntireTree } from '../render';
+let rerenderEntireTree = () => {
+
+}
 
 let state = {
    profilePage: {
@@ -24,6 +26,7 @@ let state = {
          { id: 2, massage: "Слава Больцеровичу!" },
          { id: 3, massage: "Слава Польскому Народу!" },
       ],
+      newMassageText: '',
    },
    siteBar: [
       { id: 1, name: "Andrey" },
@@ -31,7 +34,9 @@ let state = {
       { id: 3, name: "Sveta" },
    ],
 }
-export let addPost = () => {
+
+export let store={
+ addPost(){
    let newPost = {
       id: state.profilePage.posts.length + 1,
       massage: state.profilePage.newPostText,
@@ -40,13 +45,27 @@ export let addPost = () => {
    state.profilePage.posts.push(newPost);
    rerenderEntireTree(state);
    state.profilePage.newPostText = '';
-}
-
-
-export let updateNewPostText = (newText) => {
+ },
+ updateNewPostText(newText) {
    state.profilePage.newPostText = newText;
    rerenderEntireTree(state);
-
+ },
+addMassage() {
+   let newMassage = {
+      id: state.dialogsPage.massages.length + 1,
+      massage: state.dialogsPage.newMassageText,
+   }
+   state.dialogsPage.massages.push(newMassage);
+   rerenderEntireTree(state);
+   state.dialogsPage.newMassageText = '';
+ },
+ updateNewMassageText(text) {
+   state.dialogsPage.newMassageText = text;
+   rerenderEntireTree(state);
+},
 }
 
+export const subscribe = (observer) => {
+   rerenderEntireTree = observer;
+}
 export default state;

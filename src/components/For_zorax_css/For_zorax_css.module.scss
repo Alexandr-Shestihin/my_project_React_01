@@ -5,7 +5,10 @@
       center no-repeat;
    background-size: contain;
    margin: 30px;
-   animation: heart 1s linear 1s infinite alternate;
+   animation: heart 1s linear 0s infinite alternate;
+   &_s{
+      animation: heart 1.5s linear 1s infinite alternate;
+   }
 }
 
 @keyframes heart {

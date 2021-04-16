@@ -41,7 +41,6 @@ const Learn = (props) => {
       minus = 0;
    };
    ///////////Шифратор//////////////
-   let totalResultDecoder;
    function encoder(str, pass) {
       let i = pass;
       if ((String(i).length < 8) && i) {
@@ -55,26 +54,52 @@ const Learn = (props) => {
          return 'Пароль не соответствует требованиям!';
    }
 
+   function decoder(str, pass) {
+      let result = '';
+      for (let key of str) {
+         let resultIccDecoder = key.codePointAt();
+         resultIccDecoder = resultIccDecoder - pass + (pass / 2) - (pass ** (1 / 2))
+         result += String.fromCodePoint(resultIccDecoder.toFixed(0))
+      }
+      return result
+   }
+
    let text = React.createRef();
    let resultCod = React.createRef();
+   let totalResultDecoder = React.createRef();
    let showResultCod = () => {
-      totalResultDecoder = encoder(text.current.value, +resultCod.current.value);
+      totalResultDecoder.current.value = encoder(text.current.value, +resultCod.current.value);
    }
-   // let massage = prompt('Введите сообщения для кодировки', '');
-   // let numb = +prompt('Введите пароль из ЦЕЛОГО числа (ДО 6-Х СИМВОЛОВ)', '');
-
+   let showResultDeCod = () => {
+      totalResultDecoder.current.value = decoder(text.current.value, +resultCod.current.value);
+   }
+   let deleteText = () => {
+      text.current.value = '';
+      resultCod.current.value = '';
+      totalResultDecoder.current.value = '';
+   }
 
    return (
       <div className={s.value}>
          <div>Введите сообщения для кодировки: </div>
-         <textarea ref={text}>Много текста разного блядь!</textarea><br />
+         <textarea ref={text} />
+         <div>Введите пароль из числа (ДО 7-Х СИМВОЛОВ): </div>
+         <input ref={resultCod} placeholder="Пароль" />
+         <div>Результат: </div>
+         <textarea ref={totalResultDecoder} />
+         <button
+            onClick={showResultCod}
+            className={s.mainButton}
+         >Зашифровать!</button>
+         <button
+            className={s.mainButton}
+            onClick={showResultDeCod}
+         >Дешифровать!</button>
+         <button
+            className={s.mainButton}
+            onClick={deleteText}
+         >Очистить!</button>
 
-         <div>Введите пароль из ЦЕЛОГО числа (ДО 7-Х СИМВОЛОВ): </div>
-         <input ref={resultCod} type="password" placeholder="Пароль" /><br />
-
-         <p>{totalResultDecoder}</p>
-
-         <button onClick={showResultCod} className={s.mainButton}>Зашифровать!</button>
 
          <br /><br /><br /><br />
          <input ref={resultCalc} type="text" /><br />

@@ -1,6 +1,7 @@
 import React from 'react';
 import Learn from "./Learn/Learn";
 import s from "./For_zorax_css.module.scss";
+import Train from "./Train/Train";
 
 let i = "12345";
 
@@ -8,7 +9,9 @@ const For_zorax_css = () => {
    let value = i.length;
    return (
       <div className={s.main}>
-         {/* <div className={s.squere}></div> */}
+         <Train />
+         {/* <div className={s.squere}></div>
+         <div className={`${s.squere} ${s.squere_s} `}></div>   
          <div className={s.wrapper}>
             <div className={s.cube}>
                <div className={s.site + " " + s.site1}>1</div>
@@ -20,7 +23,7 @@ const For_zorax_css = () => {
             </div>
          </div>
 
-         <Learn />
-      </div>)
+         <Learn />*/}
+      </div >)
 }
 export default For_zorax_css;
