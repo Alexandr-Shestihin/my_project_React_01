@@ -10,8 +10,8 @@ const For_zorax_css = () => {
    return (
       <div className={s.main}>
          <Train />
-         {/* <div className={s.squere}></div>
-         <div className={`${s.squere} ${s.squere_s} `}></div>   
+         <div className={s.squere}></div>
+         <div className={`${s.squere} ${s.squere_s} `}></div>
          <div className={s.wrapper}>
             <div className={s.cube}>
                <div className={s.site + " " + s.site1}>1</div>
@@ -23,7 +23,7 @@ const For_zorax_css = () => {
             </div>
          </div>
 
-         <Learn />*/}
+         <Learn />
       </div >)
 }
 export default For_zorax_css;
