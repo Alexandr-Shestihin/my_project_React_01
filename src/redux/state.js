@@ -31,25 +31,16 @@ let store = {
          { id: 3, name: "Sveta" },
       ],
    },
+   _callSubscriber() {
+   },
+
    getState() {
       return this._state;
    },
-   _callSubscriber() {
+   subscribe(observer) {
+      this._callSubscriber = observer;
    },
-   addPost() {
-      let newPost = {
-         id: this._state.profilePage.posts.length + 1,
-         massage: this._state.profilePage.newPostText,
-         likes: 50,
-      }
-      this._state.profilePage.posts.push(newPost);
-      this._callSubscriber(this._state);
-      this._state.profilePage.newPostText = '';
-   },
-   updateNewPostText(newText) {
-      this._state.profilePage.newPostText = newText;
-      this._callSubscriber(this._state);
-   },
+
    addMassage() {
       let newMassage = {
          id: this._state.dialogsPage.massages.length + 1,
@@ -59,13 +50,49 @@ let store = {
       this._callSubscriber(this._state);
       this._state.dialogsPage.newMassageText = '';
    },
-   updateNewMassageText(text) {
-      this._state.dialogsPage.newMassageText = text;
+   updateNewMassageText(newText) {
+      this._state.dialogsPage.newMassageText = newText;
       this._callSubscriber(this._state);
    },
-   subscribe(observer) {
-      this._callSubscriber = observer;
+
+   dispatch(action) {
+      if (action.type === 'ADD-POST') {
+         let newPost = {
+            id: this._state.profilePage.posts.length + 1,
+            massage: this._state.profilePage.newPostText,
+            likes: 50,
+         }
+         this._state.profilePage.posts.push(newPost);
+         this._callSubscriber(this._state);
+         this._state.profilePage.newPostText = '';
+      } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+         this._state.profilePage.newPostText = action.newText;
+         this._callSubscriber(this._state);
+      } else if (action.type === 'ADD-MASSAGE') {
+         let newMassage = {
+            id: this._state.dialogsPage.massages.length + 1,
+            massage: this._state.dialogsPage.newMassageText,
+         }
+         this._state.dialogsPage.massages.push(newMassage);
+         this._callSubscriber(this._state);
+         this._state.dialogsPage.newMassageText = '';
+      } else if (action.type === 'UPDATE-NEW-MASSAGE-TEXT') {
+         this._state.dialogsPage.newMassageText = action.newText;
+         this._callSubscriber(this._state);
+      }
    },
 }
 
 export default store;
+
+/* let user = {
+   id: 1,
+   name: 'Вася',
+}
+switch (user.id) {
+   case 1: console.log('Работает');
+      break;
+
+   case 2: console.log('Работает 2');
+      break;
+} */

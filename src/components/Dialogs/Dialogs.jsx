@@ -11,10 +11,11 @@ const Dialogs = (props) => {
    let newMassage = React.createRef();
 
    let addMassage = () => {
-      props.store.addMassage(newMassage.current.value);
+      props.dispatch({ type: 'ADD-MASSAGE' });
    }
    let onMassageChange = () => {
-      props.store.updateNewMassageText(newMassage.current.value);
+      let text = newMassage.current.value;
+      props.dispatch({ type: 'UPDATE-NEW-MASSAGE-TEXT', newText: text });
    }
    return (
       <div className={s.dialogs}>
@@ -25,7 +26,11 @@ const Dialogs = (props) => {
          </div>
          <div className={s.messages}>
             {messagesElements}
-            <textarea ref={newMassage} value={props.newMassageText} onChange={onMassageChange} />
+            <textarea
+               ref={newMassage}
+               value={props.newMassageText}
+               onChange={onMassageChange}
+            />
             <button onClick={addMassage}>Отправить</button>
          </div>
       </div>
