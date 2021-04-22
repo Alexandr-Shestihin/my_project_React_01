@@ -2,6 +2,9 @@ import React from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Massages from './Massages/Massages';
 import s from "./Dialogs.module.scss";
+import { addMassageActionCreator } from '../../redux/state';
+import { updateNewMassageTextActionCreator } from '../../redux/state';
+
 
 const Dialogs = (props) => {
    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
@@ -11,11 +14,11 @@ const Dialogs = (props) => {
    let newMassage = React.createRef();
 
    let addMassage = () => {
-      props.dispatch({ type: 'ADD-MASSAGE' });
+      props.dispatch(addMassageActionCreator());
    }
    let onMassageChange = () => {
       let text = newMassage.current.value;
-      props.dispatch({ type: 'UPDATE-NEW-MASSAGE-TEXT', newText: text });
+      props.dispatch(updateNewMassageTextActionCreator(text));
    }
    return (
       <div className={s.dialogs}>
@@ -25,13 +28,18 @@ const Dialogs = (props) => {
             </div>
          </div>
          <div className={s.messages}>
-            {messagesElements}
-            <textarea
-               ref={newMassage}
-               value={props.newMassageText}
-               onChange={onMassageChange}
-            />
-            <button onClick={addMassage}>Отправить</button>
+            <div>{messagesElements}</div>
+            <div>
+               <textarea
+                  ref={newMassage}
+                  value={props.newMassageText}
+                  onChange={onMassageChange}
+                  placeholder="Enter your massage"
+               />
+            </div>
+            <div>
+               <button onClick={addMassage}>Отправить</button>
+            </div>
          </div>
       </div>
    )

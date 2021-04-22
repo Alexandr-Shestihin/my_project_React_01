@@ -2,6 +2,8 @@ import React from 'react';
 import Learn from "./Learn/Learn";
 import s from "./For_zorax_css.module.scss";
 import Train from "./Train/Train";
+import Train_CSS from './Train_CSS/Train_CSS';
+import { NavLink, Route } from 'react-router-dom';
 
 let i = "12345";
 
@@ -9,7 +11,12 @@ const For_zorax_css = () => {
    let value = i.length;
    return (
       <div className={s.main}>
-         <Train />
+         <NavLink to='/For_zorax_css/Train_CSS'>Train_CSS</NavLink>
+         <Route path='/For_zorax_css/Train_CSS' render={() => <Train_CSS />} />
+         <br />
+         <NavLink to='/For_zorax_css/Train'>Train</NavLink>
+         <Route path='/For_zorax_css/Train' render={() => <Train />} />
+
          <div className={s.squere}></div>
          <div className={`${s.squere} ${s.squere_s} `}></div>
          <div className={s.wrapper}>

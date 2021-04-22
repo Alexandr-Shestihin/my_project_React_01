@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MASSAGE = 'ADD-MASSAGE';
+const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE-NEW-MASSAGE-TEXT';
+
+
 let store = {
    _state: {
       profilePage: {
@@ -56,7 +62,7 @@ let store = {
    },
 
    dispatch(action) {
-      if (action.type === 'ADD-POST') {
+      if (action.type === ADD_POST) {
          let newPost = {
             id: this._state.profilePage.posts.length + 1,
             massage: this._state.profilePage.newPostText,
@@ -65,10 +71,10 @@ let store = {
          this._state.profilePage.posts.push(newPost);
          this._callSubscriber(this._state);
          this._state.profilePage.newPostText = '';
-      } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+      } else if (action.type === UPDATE_NEW_POST_TEXT) {
          this._state.profilePage.newPostText = action.newText;
          this._callSubscriber(this._state);
-      } else if (action.type === 'ADD-MASSAGE') {
+      } else if (action.type === ADD_MASSAGE) {
          let newMassage = {
             id: this._state.dialogsPage.massages.length + 1,
             massage: this._state.dialogsPage.newMassageText,
@@ -76,13 +82,35 @@ let store = {
          this._state.dialogsPage.massages.push(newMassage);
          this._callSubscriber(this._state);
          this._state.dialogsPage.newMassageText = '';
-      } else if (action.type === 'UPDATE-NEW-MASSAGE-TEXT') {
+      } else if (action.type === UPDATE_NEW_MASSAGE_TEXT) {
          this._state.dialogsPage.newMassageText = action.newText;
          this._callSubscriber(this._state);
       }
    },
 }
+export const addPostActionCreator = () => {
+   return {
+      type: ADD_POST
+   }
+}
+export const updateNewPostTextActionCreator = (text) => {
+   return {
+      type: UPDATE_NEW_POST_TEXT,
+      newText: text
+   }
+}
 
+
+export const addMassageActionCreator = () => {
+   return {
+      type: ADD_MASSAGE
+   }
+}
+export const updateNewMassageTextActionCreator = (text) => {
+   return {
+      type: 'UPDATE-NEW-MASSAGE-TEXT', newText: text,
+   }
+}
 export default store;
 
 /* let user = {
