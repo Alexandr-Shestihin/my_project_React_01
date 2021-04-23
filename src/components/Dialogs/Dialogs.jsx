@@ -11,13 +11,11 @@ const Dialogs = (props) => {
 
    let messagesElements = props.dialogsPage.massages.map(m => <Massages messages={m.massage} />);
 
-   let newMassage = React.createRef();
-
    let addMassage = () => {
       props.dispatch(addMassageActionCreator());
    }
-   let onMassageChange = () => {
-      let text = newMassage.current.value;
+   let onMassageChange = (e) => {
+      let text = e.target.value;
       props.dispatch(updateNewMassageTextActionCreator(text));
    }
    return (
@@ -31,7 +29,6 @@ const Dialogs = (props) => {
             <div>{messagesElements}</div>
             <div>
                <textarea
-                  ref={newMassage}
                   value={props.newMassageText}
                   onChange={onMassageChange}
                   placeholder="Enter your massage"
