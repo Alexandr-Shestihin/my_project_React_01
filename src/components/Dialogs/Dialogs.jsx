@@ -2,8 +2,8 @@ import React from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Massages from './Massages/Massages';
 import s from "./Dialogs.module.scss";
-import { addMassageActionCreator } from '../../redux/state';
-import { updateNewMassageTextActionCreator } from '../../redux/state';
+import { addMassageActionCreator } from '../../redux/dialogs-reducer';
+import { updateNewMassageTextActionCreator } from '../../redux/dialogs-reducer';
 
 
 const Dialogs = (props) => {

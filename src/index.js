@@ -13,9 +13,6 @@ let rerenderEntireTree = (state) => {
             //addPost={store.addPost.bind(store)}
             //updateNewPostText={store.updateNewPostText.bind(store)}
             dispatch={store.dispatch.bind(store)}
-
-            addMassage={store.addMassage.bind(store)}
-            updateNewMassageText={store.updateNewMassageText.bind(store)}
          />
       </React.StrictMode>,
       document.getElementById('root')

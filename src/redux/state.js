@@ -1,8 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MASSAGE = 'ADD-MASSAGE';
-const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE-NEW-MASSAGE-TEXT';
-
+import profileReducer from './profile-reducer';
+import dialogsReducer from './dialogs-reducer';
+import siteBarReducer from './siteBar-reducer';
 
 let store = {
    _state: {
@@ -47,80 +45,17 @@ let store = {
       this._callSubscriber = observer;
    },
 
-   addMassage() {
-      let newMassage = {
-         id: this._state.dialogsPage.massages.length + 1,
-         massage: this._state.dialogsPage.newMassageText,
-      }
-      this._state.dialogsPage.massages.push(newMassage);
-      this._callSubscriber(this._state);
-      this._state.dialogsPage.newMassageText = '';
-   },
-   updateNewMassageText(newText) {
-      this._state.dialogsPage.newMassageText = newText;
-      this._callSubscriber(this._state);
-   },
-
    dispatch(action) {
-      if (action.type === ADD_POST) {
-         let newPost = {
-            id: this._state.profilePage.posts.length + 1,
-            massage: this._state.profilePage.newPostText,
-            likes: 50,
-         }
-         this._state.profilePage.posts.push(newPost);
-         this._callSubscriber(this._state);
-         this._state.profilePage.newPostText = '';
-      } else if (action.type === UPDATE_NEW_POST_TEXT) {
-         this._state.profilePage.newPostText = action.newText;
-         this._callSubscriber(this._state);
-      } else if (action.type === ADD_MASSAGE) {
-         let newMassage = {
-            id: this._state.dialogsPage.massages.length + 1,
-            massage: this._state.dialogsPage.newMassageText,
-         }
-         this._state.dialogsPage.massages.push(newMassage);
-         this._callSubscriber(this._state);
-         this._state.dialogsPage.newMassageText = '';
-      } else if (action.type === UPDATE_NEW_MASSAGE_TEXT) {
-         this._state.dialogsPage.newMassageText = action.newText;
-         this._callSubscriber(this._state);
-      }
-   },
-}
-export const addPostActionCreator = () => {
-   return {
-      type: ADD_POST
-   }
-}
-export const updateNewPostTextActionCreator = (text) => {
-   return {
-      type: UPDATE_NEW_POST_TEXT,
-      newText: text
+
+      this._state.profilePage = profileReducer(this._state.profilePage, action);
+      this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+      this._state.siteBar = siteBarReducer(this._state.siteBar, action);
+
+      this._callSubscriber(this._state);
    }
 }
 
 
-export const addMassageActionCreator = () => {
-   return {
-      type: ADD_MASSAGE
-   }
-}
-export const updateNewMassageTextActionCreator = (text) => {
-   return {
-      type: 'UPDATE-NEW-MASSAGE-TEXT', newText: text,
-   }
-}
+
+
 export default store;
-
-/* let user = {
-   id: 1,
-   name: 'Вася',
-}
-switch (user.id) {
-   case 1: console.log('Работает');
-      break;
-
-   case 2: console.log('Работает 2');
-      break;
-} */
