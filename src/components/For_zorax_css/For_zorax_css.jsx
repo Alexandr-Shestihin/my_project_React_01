@@ -5,10 +5,8 @@ import Train from "./Train/Train";
 import Train_CSS from './Train_CSS/Train_CSS';
 import { NavLink, Route } from 'react-router-dom';
 
-let i = "12345";
-
 const For_zorax_css = () => {
-   let value = i.length;
+
    return (
       <div className={s.main}>
          <NavLink to='/For_zorax_css/Train_CSS'>Train_CSS</NavLink>
