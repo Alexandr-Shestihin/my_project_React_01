@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import For_zorax_css from './components/For_zorax_css/For_zorax_css';
-import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import News from './components/News/News';
@@ -20,15 +20,12 @@ const App = (props) => {
 
             <div className="app-wrapper-content">
 
-               <Route path="/Dialogs" render={() => <Dialogs
-                  dialogsPage={props.state.dialogsPage}
-                  newMassageText={props.state.dialogsPage.newMassageText}
-                  dispatch={props.dispatch}
+               <Route path="/Dialogs" render={() => <DialogsContainer
+                  store={props.store}
                />} />
 
                <Route path="/profile" render={() => <Profile
-                  profilePage={props.state.profilePage}
-                  dispatch={props.dispatch}
+                  store={props.store}
                />} />
 
                <Route path="/news" render={() => <News />} />
