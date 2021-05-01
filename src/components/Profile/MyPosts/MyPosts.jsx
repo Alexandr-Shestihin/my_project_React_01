@@ -3,6 +3,7 @@ import s from "./MyPosts.module.scss";
 import Posts from './Post/Post';
 
 const MyPosts = (props) => {
+
    let postsElements = props.posts.map(p => (<Posts name={p.name} massage={p.massage} likes={p.likes} ava={p.ava} />))
 
    let onAddPost = () => {
