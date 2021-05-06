@@ -28,13 +28,17 @@ const dialogsReducer = (state = initialeState, action) => {
             id: state.massages.length + 1,
             massage: state.newMassageText,
          }
-         state.massages.push(newMassage);
-         state.newMassageText = '';
-         return state;
+         return {
+            ...state,
+            newMassageText: '',
+            massages: [...state.massages, newMassage]
+         };
 
       case UPDATE_NEW_MASSAGE_TEXT:
-         state.newMassageText = action.newText;
-         return state;
+         return {
+            ...state,
+            newMassageText: action.newText
+         };
 
       default:
          return state;

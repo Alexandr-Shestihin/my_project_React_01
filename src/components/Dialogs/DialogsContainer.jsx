@@ -13,11 +13,11 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
    return {
-      updateNewMassageText: () => {
-         dispatch(addMassageActionCreator())
-      },
-      onAddMassage: (text) => {
+      updateNewMassageText: (text) => {
          dispatch(updateNewMassageTextActionCreator(text))
+      },
+      onAddMassage: () => {
+         dispatch(addMassageActionCreator())
       },
    }
 }
