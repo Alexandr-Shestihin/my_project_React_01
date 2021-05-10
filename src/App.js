@@ -10,6 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import UsersContainer from './components/Users/UsersContainer';
 
 const App = (props) => {
    return (
@@ -28,6 +29,7 @@ const App = (props) => {
                <Route path="/music" render={() => <Music />} />
                <Route path="/settings" render={() => <Settings />} />
                <Route path="/for_zorax_css" render={() => <For_zorax_css />} />
+               <Route path="/users" render={() => <UsersContainer />} />
             </div>
          </div >
       </BrowserRouter>
