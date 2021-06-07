@@ -10,6 +10,7 @@ let reducers = combineReducers({
    siteBar: siteBarReducer,
    usersPage: usersReducer,
 });
+//ВНИМАНИЕ! В APP ПАРАША!
 
 let store = createStore(reducers);
 

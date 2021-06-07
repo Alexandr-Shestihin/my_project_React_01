@@ -12,12 +12,15 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 
+import store from './redux/redux-store'
+//убрать эту парашу!
+
 const App = (props) => {
    return (
       <BrowserRouter>
          <div className="app-wrapper">
             <Header />
-            <Nav /* siteBar={props.state.siteBar} */ />
+            <Nav siteBar={store.getState().siteBar} />
 
             <div className="app-wrapper-content">
 

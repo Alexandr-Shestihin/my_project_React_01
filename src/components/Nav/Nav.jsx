@@ -3,7 +3,7 @@ import s from "./Nav.module.scss";
 import { NavLink } from "react-router-dom";
 
 const Nav = (props) => {
-   //let siteBarElements = props.siteBar.names.map(e => <div className={s.item__Block}>{e.name}</div>);
+   let siteBarElements = props.siteBar.names.map(e => <div className={s.item__Block}>{e.name}</div>);
    return (
       <nav className={s.nav}>
          <div className={s.item}>
@@ -28,7 +28,7 @@ const Nav = (props) => {
          <div className={`${s.item} ${s.item__friends}`}>
             <h2>Frients</h2>
             <div className={s.item__mainBlock}>
-               {/*  {siteBarElements} */}
+               {siteBarElements}
             </div>
          </div>
       </nav>
