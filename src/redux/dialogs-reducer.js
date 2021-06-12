@@ -14,8 +14,8 @@ let initialeState = {
       { id: 8, name: 'Иван' },
    ],
    massages: [
-      { id: 1, massage: "Слава Польше!" },
-      { id: 2, massage: "Хочу в Польшу" },
+      { id: 1, massage: "Привет" },
+      { id: 2, massage: "Сообщение" },
       { id: 3, massage: "1234" },
    ],
    newMassageText: '',
