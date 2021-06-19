@@ -2,9 +2,12 @@
    grid-area: h;
    background: lime;
    .loginBlock {
-      color: red;
+      color: rgb(163, 33, 135);
       float: right;
-      margin-top: 15px;
+      margin: 15px 10px 0 0;
+   }
+   .loginBlockLink {
+      color: rgb(163, 33, 135);
    }
 }
 
