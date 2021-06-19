@@ -1,7 +1,54 @@
 import React from 'react';
 import Users from './Users';
 import { connect } from 'react-redux';
-import { followAC, unfollowAC, setUsersAC, setPageSizeAC, setPageAC, setPageCountAC } from '../../redux/users-reducer';
+import { follow, unfollow, setUsers, setPageSize, setPage, setPageCount, setTotalUsersCount, setIsFetching } from '../../redux/users-reducer';
+import * as axios from 'axios';
+
+class UsersFunc extends React.Component {
+   componentDidMount() {
+      this.props.setIsFetching(true);
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+         this.props.setIsFetching(false);
+         this.props.setUsers(response.data.items)
+         this.props.setTotalUsersCount(response.data.totalCount)
+      });
+   }
+
+   showCountUsersOnPage = (pageNumber) => {
+      this.props.setIsFetching(true);
+      this.props.setPageSize(pageNumber);
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=1&count=${pageNumber}`).then(response => {
+         this.props.setIsFetching(false);
+         this.props.setUsers(response.data.items)
+      });
+   }
+   showPage = (pageNumber) => {
+      this.props.setIsFetching(true);
+      this.props.setPage(pageNumber);
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+         this.props.setIsFetching(false);
+         this.props.setUsers(response.data.items)
+      })
+   }
+   render() {
+
+      return (
+         <Users
+            setPageCount={this.props.setPageCount}
+            totalUsersCount={this.props.totalUsersCount}
+            pageSize={this.props.pageSize}
+            showCountUsersOnPage={this.showCountUsersOnPage}
+            currentPage={this.props.currentPage}
+            showPage={this.showPage}
+            unfollow={this.props.unfollow}
+            follow={this.props.follow}
+            users={this.props.users}
+            pagesCount={this.props.pagesCount}
+            isFetching={this.props.isFetching}
+         />
+      )
+   }
+}
 
 let mapStateToProps = (state) => {
    return {
@@ -9,67 +56,18 @@ let mapStateToProps = (state) => {
       totalUsersCount: state.usersPage.totalUsersCount,
       pageSize: state.usersPage.pageSize,
       currentPage: state.usersPage.currentPage,
-      pagesCount: state.usersPage.pagesCount
+      pagesCount: state.usersPage.pagesCount,
+      isFetching: state.usersPage.isFetching,
    }
 }
 
-let mapDispatchToProps = (dispatch) => {
-   return {
-      follow: (userId) => {
-         dispatch(followAC(userId))
-      },
-      unfollow: (userId) => {
-         dispatch(unfollowAC(userId))
-      },
-      setUsers: (users) => {
-         dispatch(setUsersAC(users))
-      },
-      setPageSize: (usersCount) => {
-         dispatch(setPageSizeAC(usersCount))
-      },
-      setPage: (pageNumber) => {
-         dispatch(setPageAC(pageNumber))
-      },
-      setPageCount: (totalUsersCount, pageSize) => {
-         dispatch(setPageCountAC(totalUsersCount, pageSize))
-      }
-   }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
-
-
-
-
-
-
-
-
-
-
-/* import React from 'react';
-import Users from "./Users";
-import { connect } from 'react-redux';
-import { followAC, unfollowAC, setUsersAC } from '../../redux/users-reducer';
-
-let mapStateToProps = (state) => {
-   return {
-      users: state.usersPage.users
-   }
-}
-
-let mapDispatchToProps = (dispatch) => {
-   return {
-      follow: (userId) => {
-         dispatch(followAC(userId));
-      },
-      unfollow: (userId) => {
-         dispatch(unfollowAC(userId));
-      },
-      setUsers: (users) => {
-         dispatch(setUsersAC(users));
-      }
-   }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
- */
+export default connect(mapStateToProps, {
+   follow,
+   unfollow,
+   setUsers,
+   setPageSize,
+   setPage,
+   setPageCount,
+   setTotalUsersCount,
+   setIsFetching,
+})(UsersFunc);

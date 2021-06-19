@@ -3,15 +3,17 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS'; // ус-т пользователей
 const PAGE_SIZE = 'PAGE_SIZE'; // ус-т кол-во пользователей на странице
 const SET_PAGE = 'SET_PAGE'; // ус-т активную страницу 
-
-const SET_PAGE_COUNT = 'SET_PAGE_COUNT'; // определяет кол-во страниц
+const SET_PAGE_COUNT = 'SET_PAGE_COUNT'; // ус-т кол-во страниц
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'; //ус-т общее кол-во пользователей
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'; //переклю анимацию загрузки  
 
 let initialeState = {
    users: [],
-   pageSize: 5, //кол-во пользователей на странице
-   totalUsersCount: 20, //всего пользователей
+   pageSize: 100, //кол-во пользователей на странице
+   totalUsersCount: 0, //всего пользователей
    currentPage: 1, //стартовая страница
    pagesCount: 5, //кол-во страниц
+   isFetching: false, // анимация загрузки
 }
 
 const usersReducer = (state = initialeState, action) => {
@@ -61,10 +63,23 @@ const usersReducer = (state = initialeState, action) => {
       };
 
       case SET_PAGE_COUNT: {
-         debugger
          return {
             ...state,
             pagesCount: Math.ceil(action.totalUsersCount / action.pageSize)
+         }
+      };
+
+      case SET_TOTAL_USERS_COUNT: {
+         return {
+            ...state,
+            totalUsersCount: action.totalUsersCount,
+         }
+      }
+
+      case TOGGLE_IS_FETCHING: {
+         return {
+            ...state,
+            isFetching: action.isFetching
          }
       }
 
@@ -73,11 +88,14 @@ const usersReducer = (state = initialeState, action) => {
 
 }
 
-export const followAC = (userId) => ({ type: FOLLOW, userId });
-export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId });
-export const setUsersAC = (users) => ({ type: SET_USERS, users });
-export const setPageSizeAC = (pageSize) => ({ type: PAGE_SIZE, pageSize });
-export const setPageAC = (pageNumber) => ({ type: SET_PAGE, pageNumber });
-export const setPageCountAC = (totalUsersCount, pageSize) => ({ type: SET_PAGE_COUNT, totalUsersCount, pageSize })
+export const follow = (userId) => ({ type: FOLLOW, userId });
+export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
+export const setUsers = (users) => ({ type: SET_USERS, users });
+export const setPageSize = (pageSize = 0) => ({ type: PAGE_SIZE, pageSize });
+export const setPage = (pageNumber) => ({ type: SET_PAGE, pageNumber });
+export const setPageCount = (totalUsersCount, pageSize) => ({ type: SET_PAGE_COUNT, totalUsersCount, pageSize });
+export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount });
+export const setIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
+
 
 export default usersReducer;
