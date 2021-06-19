@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 
 ReactDOM.render(
    <React.StrictMode>
-      {/* Удалить StrictMode, чтобы не было дублей*/}
       <Provider store={store}>
          <App />
       </Provider>

@@ -1,6 +1,6 @@
 import './App.scss';
 import React from 'react';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Nav from './components/Nav/Nav';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import For_zorax_css from './components/For_zorax_css/For_zorax_css';
@@ -19,7 +19,7 @@ const App = (props) => {
    return (
       <BrowserRouter>
          <div className="app-wrapper">
-            <Header />
+            <HeaderContainer />
             <Nav siteBar={store.getState().siteBar} />
 
             <div className="app-wrapper-content">
