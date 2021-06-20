@@ -7,7 +7,7 @@ import * as axios from 'axios';
 class UsersFunc extends React.Component {
    componentDidMount() {
       this.props.setIsFetching(true);
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, { withCredentials: true }).then(response => {
          this.props.setIsFetching(false);
          this.props.setUsers(response.data.items)
          this.props.setTotalUsersCount(response.data.totalCount)
@@ -17,7 +17,7 @@ class UsersFunc extends React.Component {
    showCountUsersOnPage = (pageNumber) => {
       this.props.setIsFetching(true);
       this.props.setPageSize(pageNumber);
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=1&count=${pageNumber}`).then(response => {
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=1&count=${pageNumber}`, { withCredentials: true }).then(response => {
          this.props.setIsFetching(false);
          this.props.setUsers(response.data.items)
       });
@@ -25,7 +25,7 @@ class UsersFunc extends React.Component {
    showPage = (pageNumber) => {
       this.props.setIsFetching(true);
       this.props.setPage(pageNumber);
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, { withCredentials: true }).then(response => {
          this.props.setIsFetching(false);
          this.props.setUsers(response.data.items)
       })

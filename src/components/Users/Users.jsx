@@ -3,6 +3,7 @@ import Preload from './../common/preload/Preload';
 import UserPhoto from './../../assets/image/userPhoto.jpg';
 import { NavLink } from 'react-router-dom';
 import s from './Users.module.scss';
+import * as axios from 'axios';
 
 const Users = (props) => {
    props.setPageCount(props.totalUsersCount, props.pageSize)
@@ -40,10 +41,28 @@ const Users = (props) => {
                   </div>
                   <div>
                      {u.followed
-                        ? <button onClick={() => { props.unfollow(u.id) }}
-                           className={`${s.buttonUnfallow} ${s.button}`}
+                        ? <button onClick={
+                           () => {
+
+                              axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, { withCredentials: true, headers: { "API-KEY": "b9551942-ebfb-4eab-a39b-e029a365f6d9" } }).then(response => {
+                                 if (response.data.resultCode === 0) {
+                                    props.unfollow(u.id)
+                                 }
+                              });
+                           }} className={`${s.buttonUnfallow} ${s.button}`
+                           }
                         >Unfallow</button>
-                        : <button onClick={() => { props.follow(u.id) }}
+                        : <button onClick={() => {
+
+                           axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                              withCredentials: true, headers: { "API-KEY": "b9551942-ebfb-4eab-a39b-e029a365f6d9" }
+                           }).then(response => {
+
+                              if (response.data.resultCode === 0) props.follow(u.id)
+
+                           });
+
+                        }}
                            className={`${s.buttonFallow} ${s.button}`}
                         >Fallow</button>}
                   </div>
