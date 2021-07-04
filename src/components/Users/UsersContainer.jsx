@@ -1,12 +1,11 @@
 import React from 'react';
 import Users from './Users';
 import { connect } from 'react-redux';
-import { follow, unfollow, setUsers, setPageSize, setPage, setPageCount, setTotalUsersCount, setIsFetching } from '../../redux/users-reducer';
+import { follow, unfollow, setUsers, setPageSize, setPage, setPageCount, setTotalUsersCount, setIsFetching, setFollowedInProgress } from '../../redux/users-reducer';
 import { usersAPI } from './../api/api';
 
 class UsersFunc extends React.Component {
    componentDidMount() {
-      debugger
       this.props.setIsFetching(true);
       usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
          this.props.setIsFetching(false);
@@ -46,6 +45,8 @@ class UsersFunc extends React.Component {
             users={this.props.users}
             pagesCount={this.props.pagesCount}
             isFetching={this.props.isFetching}
+            setFollowedInProgress={this.props.setFollowedInProgress}
+            followedInProgress={this.props.followedInProgress}
          />
       )
    }
@@ -59,6 +60,7 @@ let mapStateToProps = (state) => {
       currentPage: state.usersPage.currentPage,
       pagesCount: state.usersPage.pagesCount,
       isFetching: state.usersPage.isFetching,
+      followedInProgress: state.usersPage.followedInProgress,
    }
 }
 
@@ -71,4 +73,5 @@ export default connect(mapStateToProps, {
    setPageCount,
    setTotalUsersCount,
    setIsFetching,
+   setFollowedInProgress,
 })(UsersFunc);

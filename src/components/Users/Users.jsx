@@ -4,7 +4,6 @@ import UserPhoto from './../../assets/image/userPhoto.jpg';
 import { NavLink } from 'react-router-dom';
 import s from './Users.module.scss';
 import { usersAPI } from './../api/api';
-import * as axios from 'axios';
 
 const Users = (props) => {
    props.setPageCount(props.totalUsersCount, props.pageSize)
@@ -13,6 +12,7 @@ const Users = (props) => {
    for (let i = 1; i <= props.pagesCount; i++) {
       arrayPage.push(i);
    }
+   console.log(props.followedInProgress.some(u => u === 5));
    return (
       <div>
          <div className={s.paginationButton}>
@@ -42,22 +42,27 @@ const Users = (props) => {
                   </div>
                   <div>
                      {u.followed
-                        ? <button onClick={
-                           () => {
-                              usersAPI.deleteUsers(u.id).then(response => {
-                                 if (response.data.resultCode === 0) {
-                                    props.unfollow(u.id)
-                                 }
-                              });
-                           }} className={`${s.buttonUnfallow} ${s.button}`
-                           }
+                        ? <button
+                           disabled={props.followedInProgress.some(s => s === u.id)}
+                           onClick={
+                              () => {
+                                 props.setFollowedInProgress(true, u.id)
+                                 usersAPI.deleteUsers(u.id).then(response => {
+
+                                    if (response.data.resultCode === 0) {
+                                       props.unfollow(u.id)
+                                    }
+                                    props.setFollowedInProgress(false, u.id)
+                                 });
+                              }} className={`${s.buttonUnfallow} ${s.button}`}
                         >Unfallow</button>
-                        : <button onClick={() => {
-
+                        : <button disabled={props.followedInProgress.some(s => s === u.id)} onClick={() => {
+                           props.setFollowedInProgress(true, u.id)
                            usersAPI.postUsers(u.id).then(response => {
-
-                              if (response.data.resultCode === 0) props.follow(u.id)
-
+                              if (response.data.resultCode === 0) {
+                                 props.follow(u.id)
+                              }
+                              props.setFollowedInProgress(false, u.id)
                            });
 
                         }}

@@ -13,7 +13,7 @@ import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 
 import store from './redux/redux-store'
-//убрать эту парашу!
+//убрать эту фигню!
 
 const App = (props) => {
    return (

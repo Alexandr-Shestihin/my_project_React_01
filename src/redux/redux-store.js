@@ -12,7 +12,7 @@ let reducers = combineReducers({
    usersPage: usersReducer,
    auth: authReducer,
 });
-//ВНИМАНИЕ! В APP ПАРАША!
+//ВНИМАНИЕ! В APP ФИГНЯ!
 
 let store = createStore(reducers);
 

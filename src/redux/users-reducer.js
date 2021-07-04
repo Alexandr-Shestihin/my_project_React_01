@@ -5,7 +5,8 @@ const PAGE_SIZE = 'PAGE_SIZE'; // ус-т кол-во пользователей
 const SET_PAGE = 'SET_PAGE'; // ус-т активную страницу 
 const SET_PAGE_COUNT = 'SET_PAGE_COUNT'; // ус-т кол-во страниц
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'; //ус-т общее кол-во пользователей
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'; //переклю анимацию загрузки  
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'; //переключ анимацию загрузки  
+const TOGGLE_IS_FOLLOWED_PROGRESS = 'TOGGLE_IS_FOLLOWED_PROGRESS'; //enabled/disabled btn
 
 let initialeState = {
    users: [],
@@ -14,6 +15,7 @@ let initialeState = {
    currentPage: 1, //стартовая страница
    pagesCount: 5, //кол-во страниц
    isFetching: false, // анимация загрузки
+   followedInProgress: [2, 3,],
 }
 
 const usersReducer = (state = initialeState, action) => {
@@ -83,6 +85,15 @@ const usersReducer = (state = initialeState, action) => {
          }
       }
 
+      case TOGGLE_IS_FOLLOWED_PROGRESS: {
+         return {
+            ...state,
+            followedInProgress: action.status
+               ? [...state.followedInProgress, action.id]
+               : state.followedInProgress.filter(u => u != action.id),
+         }
+      }
+
       default: return state;
    }
 
@@ -96,6 +107,7 @@ export const setPage = (pageNumber) => ({ type: SET_PAGE, pageNumber });
 export const setPageCount = (totalUsersCount, pageSize) => ({ type: SET_PAGE_COUNT, totalUsersCount, pageSize });
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount });
 export const setIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
+export const setFollowedInProgress = (status, id) => ({ type: TOGGLE_IS_FOLLOWED_PROGRESS, status, id })
 
 
 export default usersReducer;
