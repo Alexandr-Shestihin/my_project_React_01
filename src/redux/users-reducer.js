@@ -1,3 +1,5 @@
+import { usersAPI } from './../components/api/api';
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS'; // ус-т пользователей
@@ -15,7 +17,7 @@ let initialeState = {
    currentPage: 1, //стартовая страница
    pagesCount: 5, //кол-во страниц
    isFetching: false, // анимация загрузки
-   followedInProgress: [2, 3,],
+   followedInProgress: [],
 }
 
 const usersReducer = (state = initialeState, action) => {
@@ -109,5 +111,42 @@ export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_
 export const setIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const setFollowedInProgress = (status, id) => ({ type: TOGGLE_IS_FOLLOWED_PROGRESS, status, id })
 
+export const thunkCreator = (currentPage, pageSize) => {
+   return (dispatch) => {
+
+      dispatch(setIsFetching(true));
+      dispatch(setPageSize(pageSize));
+      dispatch(setPage(currentPage));
+      usersAPI.getUsers(currentPage, pageSize).then(response => {
+
+         dispatch(setIsFetching(false));
+         dispatch(setUsers(response.items));
+         dispatch(setTotalUsersCount(response.totalCount));
+      })
+   }
+}
+export const thunkFallow = (id) => {
+   return (dispatch) => {
+      dispatch(setFollowedInProgress(true, id))
+      usersAPI.postUsers(id).then(response => {
+         if (response.data.resultCode === 0) {
+            dispatch(follow(id))
+         }
+         dispatch(setFollowedInProgress(false, id))
+      });
+   }
+}
+export const thunkUnfallow = (id) => {
+   return (dispatch) => {
+      dispatch(setFollowedInProgress(true, id))
+      usersAPI.deleteUsers(id).then(response => {
+
+         if (response.data.resultCode === 0) {
+            dispatch(unfollow(id))
+         }
+         dispatch(setFollowedInProgress(false, id))
+      });
+   }
+}
 
 export default usersReducer;

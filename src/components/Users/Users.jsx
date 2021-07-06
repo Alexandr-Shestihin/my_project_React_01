@@ -3,7 +3,6 @@ import Preload from './../common/preload/Preload';
 import UserPhoto from './../../assets/image/userPhoto.jpg';
 import { NavLink } from 'react-router-dom';
 import s from './Users.module.scss';
-import { usersAPI } from './../api/api';
 
 const Users = (props) => {
    props.setPageCount(props.totalUsersCount, props.pageSize)
@@ -44,28 +43,10 @@ const Users = (props) => {
                      {u.followed
                         ? <button
                            disabled={props.followedInProgress.some(s => s === u.id)}
-                           onClick={
-                              () => {
-                                 props.setFollowedInProgress(true, u.id)
-                                 usersAPI.deleteUsers(u.id).then(response => {
-
-                                    if (response.data.resultCode === 0) {
-                                       props.unfollow(u.id)
-                                    }
-                                    props.setFollowedInProgress(false, u.id)
-                                 });
-                              }} className={`${s.buttonUnfallow} ${s.button}`}
+                           onClick={() => { props.onUnfollow(u.id) }} className={`${s.buttonUnfallow} ${s.button}`}
                         >Unfallow</button>
-                        : <button disabled={props.followedInProgress.some(s => s === u.id)} onClick={() => {
-                           props.setFollowedInProgress(true, u.id)
-                           usersAPI.postUsers(u.id).then(response => {
-                              if (response.data.resultCode === 0) {
-                                 props.follow(u.id)
-                              }
-                              props.setFollowedInProgress(false, u.id)
-                           });
-
-                        }}
+                        : <button disabled={props.followedInProgress.some(s => s === u.id)}
+                           onClick={() => { props.onfollow(u.id) }}
                            className={`${s.buttonFallow} ${s.button}`}
                         >Fallow</button>}
                   </div>

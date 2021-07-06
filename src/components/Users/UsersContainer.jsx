@@ -1,35 +1,25 @@
 import React from 'react';
 import Users from './Users';
 import { connect } from 'react-redux';
-import { follow, unfollow, setUsers, setPageSize, setPage, setPageCount, setTotalUsersCount, setIsFetching, setFollowedInProgress } from '../../redux/users-reducer';
-import { usersAPI } from './../api/api';
+import { follow, unfollow, setUsers, setPageSize, setPage, setPageCount, setTotalUsersCount, setIsFetching, setFollowedInProgress, thunkCreator, thunkFallow, thunkUnfallow } from '../../redux/users-reducer';
 
 class UsersFunc extends React.Component {
    componentDidMount() {
-      this.props.setIsFetching(true);
-      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
-         this.props.setIsFetching(false);
-         this.props.setUsers(response.items)
-         this.props.setTotalUsersCount(response.totalCount)
-      });
+      this.props.thunkCreator(this.props.currentPage, this.props.pageSize)
    }
-
    showCountUsersOnPage = (pageNumber) => {
-      this.props.setIsFetching(true);
-      this.props.setPageSize(pageNumber);
-      usersAPI.getUsers(1, pageNumber).then(response => {
-         this.props.setIsFetching(false);
-         this.props.setUsers(response.items)
-      });
+      this.props.thunkCreator(1, pageNumber)
    }
    showPage = (pageNumber) => {
-      this.props.setIsFetching(true);
-      this.props.setPage(pageNumber);
-      usersAPI.getUsers(pageNumber, this.props.pageSize).then(response => {
-         this.props.setIsFetching(false);
-         this.props.setUsers(response.items)
-      })
+      this.props.thunkCreator(pageNumber, this.props.pageSize);
    }
+   onfollow = (id) => {
+      this.props.thunkFallow(id)
+   }
+   onUnfollow = (id) => {
+      this.props.thunkUnfallow(id)
+   }
+
    render() {
 
       return (
@@ -40,13 +30,11 @@ class UsersFunc extends React.Component {
             showCountUsersOnPage={this.showCountUsersOnPage}
             currentPage={this.props.currentPage}
             showPage={this.showPage}
-            unfollow={this.props.unfollow}
-            follow={this.props.follow}
             users={this.props.users}
             pagesCount={this.props.pagesCount}
-            isFetching={this.props.isFetching}
-            setFollowedInProgress={this.props.setFollowedInProgress}
             followedInProgress={this.props.followedInProgress}
+            onfollow={this.onfollow}
+            onUnfollow={this.onUnfollow}
          />
       )
    }
@@ -65,8 +53,6 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-   follow,
-   unfollow,
    setUsers,
    setPageSize,
    setPage,
@@ -74,4 +60,7 @@ export default connect(mapStateToProps, {
    setTotalUsersCount,
    setIsFetching,
    setFollowedInProgress,
+   thunkCreator,
+   thunkFallow,
+   thunkUnfallow,
 })(UsersFunc);
