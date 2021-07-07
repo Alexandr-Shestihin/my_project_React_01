@@ -1,7 +1,7 @@
 import React from 'react';
 import Users from './Users';
 import { connect } from 'react-redux';
-import { follow, unfollow, setUsers, setPageSize, setPage, setPageCount, setTotalUsersCount, setIsFetching, setFollowedInProgress, thunkCreator, thunkFallow, thunkUnfallow } from '../../redux/users-reducer';
+import { setUsers, setPageSize, setPage, setPageCount, setTotalUsersCount, setIsFetching, setFollowedInProgress, thunkCreator, thunkFallow, thunkUnfallow } from '../../redux/users-reducer';
 
 class UsersFunc extends React.Component {
    componentDidMount() {

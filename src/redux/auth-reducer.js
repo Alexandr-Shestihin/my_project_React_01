@@ -28,8 +28,10 @@ export const setAuthUserData = (userId, email, login) => ({ type: SET_AUTH_USER_
 export const thunkAuth = () => {
    return (dispatch) => {
       usersAPI.auth().then(response => {
-         let { id, email, login } = response.data.data;
-         dispatch(setAuthUserData(id, email, login))
+         if (response.data.resultCode === 0) {
+            let { id, email, login } = response.data.data;
+            dispatch(setAuthUserData(id, email, login))
+         }
       })
    }
 }
