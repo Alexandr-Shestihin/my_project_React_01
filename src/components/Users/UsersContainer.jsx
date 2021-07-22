@@ -2,6 +2,8 @@ import React from 'react';
 import Users from './Users';
 import { connect } from 'react-redux';
 import { setUsers, setPageSize, setPage, setPageCount, setTotalUsersCount, setIsFetching, setFollowedInProgress, thunkCreator, thunkFallow, thunkUnfallow } from '../../redux/users-reducer';
+import { withAuthRedirect } from '../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 class UsersFunc extends React.Component {
    componentDidMount() {
@@ -53,7 +55,7 @@ let mapStateToProps = (state) => {
    }
 }
 
-export default connect(mapStateToProps, {
+export default compose(connect(mapStateToProps, {
    setUsers,
    setPageSize,
    setPage,
@@ -64,4 +66,4 @@ export default connect(mapStateToProps, {
    thunkCreator,
    thunkFallow,
    thunkUnfallow,
-})(UsersFunc);
+}), withAuthRedirect)(UsersFunc)
