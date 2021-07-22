@@ -6,6 +6,7 @@ import s from './Users.module.scss';
 
 const Users = (props) => {
    props.setPageCount(props.totalUsersCount, props.pageSize)
+   //alert(props.isFetching);
 
    let arrayPage = [];
    for (let i = 1; i <= props.pagesCount; i++) {

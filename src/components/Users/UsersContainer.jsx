@@ -35,6 +35,7 @@ class UsersFunc extends React.Component {
             followedInProgress={this.props.followedInProgress}
             onfollow={this.onfollow}
             onUnfollow={this.onUnfollow}
+            isFetching={this.props.isFetching}
          />
       )
    }

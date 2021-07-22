@@ -4,7 +4,7 @@ const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE-NEW-MASSAGE-TEXT';
 let initialeState = {
    dialogs: [
       { id: 0, name: 'Чёрный властелин' },
-      { id: 1, name: 'Даун' },
+      { id: 1, name: 'Чёрный Даун' },
       { id: 2, name: 'Шкальник' },
       { id: 3, name: 'Ян' },
       { id: 4, name: 'Александр' },
