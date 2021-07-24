@@ -12,7 +12,6 @@ const Users = (props) => {
    for (let i = 1; i <= props.pagesCount; i++) {
       arrayPage.push(i);
    }
-   console.log(props.followedInProgress.some(u => u === 5));
    return (
       <div>
          <div className={s.paginationButton}>
