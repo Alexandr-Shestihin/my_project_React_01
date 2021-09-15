@@ -1,10 +1,21 @@
 import React from 'react';
 import Dialogs from './Dialogs';
 import { addMassageActionCreator } from '../../redux/dialogs-reducer';
-import { updateNewMassageTextActionCreator } from '../../redux/dialogs-reducer';
 import { connect } from 'react-redux';
 import { withAuthRedirect } from './../hoc/withAuthRedirect';
 import { compose } from 'redux';
+
+class DialogsContainer extends React.Component {
+   componentDidMount() {
+
+   }
+   render() {
+      return (
+         <Dialogs {...this.props} />
+      )
+
+   }
+}
 
 let mapStateToProps = (state) => {
    return {
@@ -14,15 +25,4 @@ let mapStateToProps = (state) => {
    }
 }
 
-let mapDispatchToProps = (dispatch) => {
-   return {
-      updateNewMassageText: (text) => {
-         dispatch(updateNewMassageTextActionCreator(text))
-      },
-      onAddMassage: () => {
-         dispatch(addMassageActionCreator())
-      },
-   }
-}
-
-export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialogs)
+export default compose(connect(mapStateToProps, { addMassageActionCreator }), withAuthRedirect)(DialogsContainer)

@@ -5,6 +5,7 @@ import siteBarReducer from "./siteBar-reducer";
 import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
+import loginReducer from "./login-reducer";
 
 let reducers = combineReducers({
    profilePage: profileReducer,
@@ -12,6 +13,7 @@ let reducers = combineReducers({
    siteBar: siteBarReducer,
    usersPage: usersReducer,
    auth: authReducer,
+   login: loginReducer,
 });
 //ВНИМАНИЕ! В APP ФИГНЯ!
 

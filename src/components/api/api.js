@@ -32,6 +32,16 @@ export const usersAPI = {
          instance.get('auth/me')
       )
    },
+   login(email, password, rememberMe = false) {
+      return (
+         instance.post('/auth/login', { email, password, rememberMe })
+      )
+   },
+   logout() {
+      return (
+         instance.delete('/auth/login')
+      )
+   },
 
    getProfile(userId) {
       return (
@@ -53,6 +63,16 @@ export const profileAPI = {
    updateStatus(statusText) {
       return (
          instance.put('profile/status/', { status: statusText })
+      )
+   },
+}
+
+
+//не работает
+export const loginAPI = {
+   postLogin({ values }) {
+      return (
+         instance.post({ values })
       )
    },
 }

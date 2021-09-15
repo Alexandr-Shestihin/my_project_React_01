@@ -1,24 +1,22 @@
 const ADD_MASSAGE = 'ADD-MASSAGE';
-const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE-NEW-MASSAGE-TEXT';
 
 let initialeState = {
    dialogs: [
       { id: 0, name: 'Чёрный властелин' },
-      { id: 1, name: 'Чёрный Даун' },
+      { id: 1, name: 'Иван' },
       { id: 2, name: 'Шкальник' },
       { id: 3, name: 'Ян' },
       { id: 4, name: 'Александр' },
-      { id: 5, name: 'Россеянская болельщица' },
-      { id: 6, name: 'Рогозин' },
+      { id: 5, name: 'Николай' },
+      { id: 6, name: 'ПК' },
       { id: 7, name: 'Белый властелин' },
-      { id: 8, name: 'Иван' },
+      { id: 8, name: 'Лень было имя придумывать' },
    ],
    massages: [
       { id: 1, massage: "Привет" },
       { id: 2, massage: "Сообщение" },
       { id: 3, massage: "1234" },
-   ],
-   newMassageText: '',
+   ]
 }
 
 const dialogsReducer = (state = initialeState, action) => {
@@ -26,32 +24,21 @@ const dialogsReducer = (state = initialeState, action) => {
       case ADD_MASSAGE:
          let newMassage = {
             id: state.massages.length + 1,
-            massage: state.newMassageText,
+            massage: action.text,
          }
          return {
             ...state,
-            newMassageText: '',
-            massages: [...state.massages, newMassage]
-         };
-
-      case UPDATE_NEW_MASSAGE_TEXT:
-         return {
-            ...state,
-            newMassageText: action.newText
+            massages: [...state.massages, newMassage],
          };
 
       default:
          return state;
    }
 }
-export const addMassageActionCreator = () => {
+export const addMassageActionCreator = (text) => {
    return {
-      type: ADD_MASSAGE
+      type: ADD_MASSAGE, text: text,
    }
 }
-export const updateNewMassageTextActionCreator = (text) => {
-   return {
-      type: 'UPDATE-NEW-MASSAGE-TEXT', newText: text,
-   }
-}
+
 export default dialogsReducer;

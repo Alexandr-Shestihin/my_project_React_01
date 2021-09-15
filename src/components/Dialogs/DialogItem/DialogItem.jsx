@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 import s from "./../Dialogs.module.scss";
 
 const DialogItem = (obj) => {
-   console.log(obj);
-   debugger
    let path = "/Dialogs/" + obj.id
    return (
       <div >

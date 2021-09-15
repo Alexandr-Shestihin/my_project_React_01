@@ -11,9 +11,10 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
-import Login from './components/login/login';
+import LoginContainer from './components/login/loginContainer';
 
 import store from './redux/redux-store'
+import ForFormik from './components/componentForFormik/forFormik';
 //убрать эту фигню!
 
 const App = (props) => {
@@ -25,6 +26,8 @@ const App = (props) => {
 
             <div className="app-wrapper-content">
 
+               <Route path="/forFormik" render={() => <ForFormik />} />
+
                <Route path="/Dialogs" render={() => <DialogsContainer />} />
 
                <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
@@ -34,7 +37,7 @@ const App = (props) => {
                <Route path="/settings" render={() => <Settings />} />
                <Route path="/for_zorax_css" render={() => <For_zorax_css />} />
                <Route path="/users" render={() => <UsersContainer />} />
-               <Route path="/login" render={() => <Login />} />
+               <Route path="/login" render={() => <LoginContainer />} />
             </div>
          </div >
       </BrowserRouter>
