@@ -15,7 +15,6 @@ const authReducer = (state = initialeState, action) => {
          return {
             ...state,
             ...action.payload,
-            isAuth: true,
          };
 
       default: return state;
@@ -41,6 +40,12 @@ export const thunkLogin = (email, password, rememberMe) => {
       usersAPI.login(email, password, rememberMe).then(response => {
          if (response.data.resultCode === 0) {
             dispatch(thunkAuth())
+         } else if (response.data.messages[0] === 'Incorrect Email or Password') {
+            alert('Не верный логин или пароль')
+         } else if (response.data.resultCode === 10) {
+            alert('Капча')
+            console.log(response)
+
          }
       })
    }
@@ -50,7 +55,7 @@ export const thunkLogout = () => {
    return (dispatch) => {
       usersAPI.logout().then(response => {
          if (response.data.resultCode === 0) {
-            dispatch(thunkAuth(null, null, null, false))
+            dispatch(setAuthUserData(null, null, null, false))
          }
       })
    }

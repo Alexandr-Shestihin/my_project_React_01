@@ -3,6 +3,7 @@ import s from './login.module.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import Element from '../common/formControls/formControls';
+import { Redirect } from 'react-router-dom';
 
 const Input = Element('input');
 
@@ -17,17 +18,17 @@ const Login = (props) => {
 
 export const LoginForm = (props) => {
    const validationSchema = yup.object().shape({
-      email: yup.string().min(5, "минимум 5 символов").email('Не email').required('Обязательно'),
+      login: yup.string().min(5, "минимум 5 символов").email('Не email').required('Обязательно'),
       password: yup.string().min(10, "минимум 10 символов").required('Обязательно'),
    })
+   if (props.isAuth) return <Redirect to={"/profile"} />
 
    return (
       <Formik
-         initialValues={{ email: props.email, password: props.password }}
+         initialValues={{ login: props.login, password: props.password }}
          validationSchema={validationSchema}
          onSubmit={(values, { setSubmitting }) => {
-            props.thunkLogin(values.email, values.password, values.isAuth);
-            { console.log(values.email, values.password, values.isAuth) }
+            props.thunkLogin(values.login, values.password, values.isAuth);
             setSubmitting(false);
          }}
       >
@@ -44,12 +45,12 @@ export const LoginForm = (props) => {
                <div className={s.inputContainer}>
                   <Field
                      component={Input}
-                     errors={errors.email}
-                     touched={touched.email}
-                     type="email"
-                     name="email"
-                     id='email'
-                     placeholder='Email'
+                     errors={errors.login}
+                     touched={touched.login}
+                     type="login"
+                     name="login"
+                     id='login'
+                     placeholder='Login'
                      onChange={handleChange}
                      onBlur={handleBlur}
                      value={values.login}

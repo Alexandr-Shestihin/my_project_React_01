@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { setUserProfile, thunkProfile, thunkUserStatus, thunkUpdateStatus } from './../../redux/profile-reducer';
+import { thunkLogout } from './../../redux/auth-reducer';
 import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from './../hoc/withAuthRedirect';
 import { compose } from 'redux';
@@ -26,7 +27,8 @@ let mapStateToProps = (state) => {
    return {
       profile: state.profilePage.profile,
       status: state.profilePage.status,
+      isAuth: state.auth.isAuth,
    }
 }
 
-export default compose(withAuthRedirect, withRouter, connect(mapStateToProps, { setUserProfile, thunkProfile, thunkUserStatus, thunkUpdateStatus }))(ProfileContainer)
+export default compose(withAuthRedirect, withRouter, connect(mapStateToProps, { setUserProfile, thunkProfile, thunkUserStatus, thunkUpdateStatus, thunkLogout }))(ProfileContainer)
