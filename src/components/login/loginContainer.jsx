@@ -5,7 +5,7 @@ import { thunkLogin } from '../../redux/auth-reducer';
 
 class LoginContainer extends React.Component {
    componentDidMount() {
-      this.props.thunkLogin();
+
    }
    render() {
       return (
